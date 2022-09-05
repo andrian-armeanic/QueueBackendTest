@@ -3,7 +3,7 @@ import MovieModel from "../models/movie.model";
 
 const movieRouter = Router();
 
-movieRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
+movieRouter.get("/movies", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const movies = await MovieModel.find().select(["-director", "-__v"]);
         res.status(200).json({ movies });
@@ -13,7 +13,7 @@ movieRouter.get("/", async (req: Request, res: Response, next: NextFunction) => 
     }
 });
 
-movieRouter.get("/:movieId", async (req: Request, res: Response, next: NextFunction) => {
+movieRouter.get("movies/:movieId", async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.params.movieId) {
             return res.status(400).json("Wrong director identifier!");
@@ -26,7 +26,7 @@ movieRouter.get("/:movieId", async (req: Request, res: Response, next: NextFunct
     }
 });
 
-movieRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
+movieRouter.post("/movie", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newMovie = await MovieModel.create({
             name: req.body.name,
@@ -40,7 +40,7 @@ movieRouter.post("/", async (req: Request, res: Response, next: NextFunction) =>
     }
 });
 
-movieRouter.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
+movieRouter.put("/movie/:movieId", async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.params.movieId) {
             return res.status(400).json("Wrong director identifier!");

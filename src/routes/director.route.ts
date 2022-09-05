@@ -3,7 +3,7 @@ import DirectorModel from "../models/director.model";
 
 const directorRouter = Router();
 
-directorRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
+directorRouter.get("/directors", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const directors = await DirectorModel.find().select(["-__v"]);
         res.status(200).json({ directors });
@@ -13,7 +13,7 @@ directorRouter.get("/", async (req: Request, res: Response, next: NextFunction) 
     }
 });
 
-directorRouter.get("/:directorId", async (req: Request, res: Response, next: NextFunction) => {
+directorRouter.get("/director/:directorId", async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.params.directorId) {
             return res.status(400).json("Wrong director identifier!");
@@ -26,7 +26,7 @@ directorRouter.get("/:directorId", async (req: Request, res: Response, next: Nex
     }
 });
 
-directorRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
+directorRouter.post("/director", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newDirector = await DirectorModel.create({
             first_name: req.body.first_name,
@@ -39,7 +39,7 @@ directorRouter.post("/", async (req: Request, res: Response, next: NextFunction)
     }
 });
 
-directorRouter.put("/:directorId", async (req: Request, res: Response, next: NextFunction) => {
+directorRouter.put("/director/:directorId", async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.params.directorId) {
             return res.status(400).json("Wrong director identifier!");
