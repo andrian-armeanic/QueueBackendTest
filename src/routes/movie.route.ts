@@ -12,7 +12,7 @@ movieRouter.get("/movies", async (req: Request, res: Response, next: NextFunctio
         res.json("Something went wrong!");
     }
 });
-//
+
 movieRouter.get("/movies/:movieId", async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.params.movieId) {
