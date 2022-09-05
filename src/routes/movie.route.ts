@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { Types } from "mongoose";
 import MovieModel from "../models/movie.model";
 
 const movieRouter = Router();
 
 movieRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const movies = await MovieModel.find().populate('director');
+        const movies = await MovieModel.find().select(["-director", "-__v"]);
         res.status(200).json({ movies });
     } catch (e) {
         console.log(e);

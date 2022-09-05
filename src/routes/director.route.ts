@@ -5,7 +5,7 @@ const directorRouter = Router();
 
 directorRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const directors = await DirectorModel.find();
+        const directors = await DirectorModel.find().select(["-__v"]);
         res.status(200).json({ directors });
     } catch (e) {
         console.log(e);
