@@ -5,11 +5,11 @@ const movieRouter = Router();
 
 movieRouter.get("/movies", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const movies = await MovieModel.find().select(["-director", "-__v"]);
+        const movies = await MovieModel.find().select(["-__v"]).populate('director');
         res.status(200).json({ movies });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -22,7 +22,7 @@ movieRouter.get("/movies/:movieId", async (req: Request, res: Response, next: Ne
         res.status(200).json({ movie });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -36,7 +36,7 @@ movieRouter.post("/movie", async (req: Request, res: Response, next: NextFunctio
         res.status(201).json({ newMovie });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -55,7 +55,7 @@ movieRouter.put("/movie/:movieId", async (req: Request, res: Response, next: Nex
         res.status(200).json({ updatedMovie });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 

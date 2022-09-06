@@ -9,7 +9,7 @@ directorRouter.get("/directors", async (req: Request, res: Response, next: NextF
         res.status(200).json({ directors });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -22,7 +22,7 @@ directorRouter.get("/director/:directorId", async (req: Request, res: Response, 
         res.status(200).json({ director });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -35,7 +35,7 @@ directorRouter.post("/director", async (req: Request, res: Response, next: NextF
         res.status(201).json({ newDirector });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
@@ -53,7 +53,7 @@ directorRouter.put("/director/:directorId", async (req: Request, res: Response, 
         res.status(200).json({ updatedDirector });
     } catch (e) {
         console.log(e);
-        res.json("Something went wrong!");
+        res.status(500).json("Something went wrong!");
     }
 });
 
